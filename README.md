@@ -2,6 +2,27 @@
 
 This Swift package enables you to use FFmpeg libraries in your iOS, Mac Catalyst and tvOS apps.
 
+## This fork
+
+A fork of [zyuanming/FFmpeg-iOS](https://github.com/zyuanming/FFmpeg-iOS)
+built from FFmpeg 8.1.3, whose AAC decoder reads xHE-AAC (USAC). Upstream
+0.0.10 ships a 7.0 snapshot, which does not.
+
+The libraries are built by `Scripts/build-xcframeworks.sh` with upstream's
+configure options (LGPL, no GPL or nonfree parts) and attached to this repo's
+releases. To rebuild:
+
+```
+curl -LO https://ffmpeg.org/releases/ffmpeg-8.1.3.tar.xz
+curl -LO https://ffmpeg.org/releases/ffmpeg-8.1.3.tar.xz.asc
+gpg --verify ffmpeg-8.1.3.tar.xz.asc
+tar xf ffmpeg-8.1.3.tar.xz
+Scripts/build-xcframeworks.sh ffmpeg-8.1.3 build
+```
+
+Upload `build/Frameworks/*.zip` to a new release, then put the printed
+checksums and the release tag in `Package.swift`.
+
 ## Installation
 
 ```
